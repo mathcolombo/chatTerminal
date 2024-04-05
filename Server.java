@@ -20,11 +20,13 @@ public class Server {
 
     // Loop para ler as mensagens recebidas
     public void connectionLoop() throws IOException {
-        while (true) {
+       
             Socket clientSocket = serverSocket.accept();
             System.out.println("Cliente " + clientSocket.getRemoteSocketAddress() + " conectou:");
 
             this.in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream())); // Tratamento de uma Stream para conseguir receber uma String
+            
+            while (true) {
             String messageCliente = in.readLine();
             System.out.println("Cliente " + clientSocket.getRemoteSocketAddress() + ": " + messageCliente); // Exibição da mensagem recebida
         }

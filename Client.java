@@ -39,7 +39,7 @@ public class Client {
             
             System.out.print("Digite o endereço IP da máquina ao qual você deseja se conectar: ");
             final String SERVER_IP = scan.nextLine();
-            
+ 
             client.startClient(SERVER_IP);
 
         } catch (IOException e) {
