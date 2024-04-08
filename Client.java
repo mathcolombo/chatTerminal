@@ -1,24 +1,26 @@
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
 // Classe que mandará as mensagens
 public class Client {
 
-    private Socket clientSocket;
+    private ClientSocket clientSocket;
     private static Scanner scan;
-    private PrintWriter out;
+    private static String SERVER_IP;
+    public Server server;
 
     public Client() {
         scan = new Scanner(System.in);
     }
 
-    // Inicia a conexão do cliente com o servidor, seta o tipo que a mensagem será enviada e inicia o loop das mensagens
+    // Inicia a conexão do cliente com o servidor e inicia o loop das mensagens
     public void startClient(String SERVER_IP) throws  IOException {
-        clientSocket = new Socket(SERVER_IP, Server.PORT);
-        this.out = new PrintWriter(clientSocket.getOutputStream(), true)  ; // Tratamento de uma Stream para conseguir passar uma String e não precisar ficar quebrando linha
-
+        clientSocket = new ClientSocket(
+            new Socket(SERVER_IP, Server.PORT)
+        );
+        
         System.out.println("Conexão com a máquina " + SERVER_IP + " estabelecida");
         messageLoop();
     }
@@ -29,17 +31,27 @@ public class Client {
         do {
             System.out.print("Digite uma mensagem: ");
             messageClient = scan.nextLine();
-            out.println(messageClient); // Saída da mensagem
+            clientSocket.sendMessage(messageClient); // Saída da mensagem
+
+            System.out.println("Cliente " + SERVER_IP + ": " + clientSocket.getMessage()); // Recebe a mensagem enviada do outro cliente
             
         } while(!messageClient.equalsIgnoreCase("exit")); // independe de estar em caixa alta ou baixa
     }
     public static void main(String[] args) {
         try {
+            //Server server = new Server();
+            //new Thread(() -> server.startClientServer()); 
+
             Client client = new Client();
+            String LOCAL_IP = InetAddress.getLocalHost().getHostAddress(); // Armazena o IP local
+            System.out.println("O seu IP é " + LOCAL_IP); // Mostra o IP local para o cliente
+            
             
             System.out.print("Digite o endereço IP da máquina ao qual você deseja se conectar: ");
-            final String SERVER_IP = scan.nextLine();
+            //SERVER_IP = scan.nextLine();
+            SERVER_IP = "127.0.0.1";
  
+
             client.startClient(SERVER_IP);
 
         } catch (IOException e) {
