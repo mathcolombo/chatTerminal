@@ -22,8 +22,8 @@ public class Main {
             server.startServer();
 
             System.out.print("Digite o endereço IP da máquina ao qual você deseja se conectar: ");
-            //SERVER_IP = scan.nextLine();
-            SERVER_IP = "127.0.0.1";
+            SERVER_IP = scan.nextLine();
+            //SERVER_IP = "127.0.0.1";
             System.out.print("Digite a porta do servidor: ");
             SERVER_PORT = scan.nextInt();
 

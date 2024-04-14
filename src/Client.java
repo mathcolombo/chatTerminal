@@ -30,6 +30,7 @@ public class Client {
         do {
             System.out.print("Digite uma mensagem: ");
             messageClient = scan.nextLine();
+            System.out.println();
             clientSocket.sendMessage(messageClient); // Saída da mensagem
 
             System.out.println("Cliente " + SERVER_IP + ": " + clientSocket.getMessage()); // Recebe a mensagem enviada do outro cliente

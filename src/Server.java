@@ -4,7 +4,7 @@ import java.net.ServerSocket;
 // Classe que receberá as mensagens   
 public class Server {
 
-    public static final int PORT = 5000;
+    public static final int PORT = 8080;
     private ServerSocket serverSocket;
     private ClientSocket otherPointClient;
 
