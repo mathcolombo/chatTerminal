@@ -4,7 +4,7 @@ import java.net.ServerSocket;
 // Classe que receberá as mensagens   
 public class Server {
 
-    public static final int PORT = 8080;
+    public static final int PORT = 5000;
     private ServerSocket serverSocket;
     private ClientSocket otherPointClient;
 
@@ -12,11 +12,11 @@ public class Server {
     public void startServer() throws IOException {
         serverSocket = new ServerSocket(PORT);
         System.out.println("Servidor iniciado na porta " + PORT);
-        connectionLoop();
+        //connectionLoop();
     }
 
     // Loop para ler as mensagens recebidas
-    private void connectionLoop() throws IOException {      
+    public void connectionLoop() throws IOException {      
         ClientSocket clientSocket = new ClientSocket(serverSocket.accept());
         otherPointClient = clientSocket;
               
@@ -36,37 +36,12 @@ public class Server {
             System.out.println("Cliente " + clientSocket.getRemoteSocketAddress() + ": " + messageClient); // Exibição da mensagem recebida
             sendMessageToMe(clientSocket, messageClient); 
         }
+
+        System.out.println("Finalizado");
     }
 
     // Manda a mensagem recebida para o Local Host
     private void sendMessageToMe(ClientSocket sender, String messageClient) {
         otherPointClient.sendMessage(messageClient);
-    }
-
-    // Método de teste
-    public void startClientServer() {
-        Server server = new Server();
-        try {
-            server.startServer();
-            
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        System.out.println("Servidor finalizado!!");
-    }
-
-    public static void main(String[] args) {
-        Server server = new Server();
-        try {
-            server.startServer();
-            
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        System.out.println("Servidor finalizado!!");
     }
 }
