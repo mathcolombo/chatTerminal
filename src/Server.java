@@ -4,12 +4,11 @@ import java.net.ServerSocket;
 // Classe que receberá as mensagens   
 public class Server {
 
-    public static final int PORT = 8080;
     private ServerSocket serverSocket;
     private ClientSocket otherPointClient;
 
     // Inicia o servidor e a porta de uso, e inicia o loop da leitura das mensagens
-    public void startServer() throws IOException {
+    public void startServer(int PORT) throws IOException {
         serverSocket = new ServerSocket(PORT);
         System.out.println("Servidor iniciado na porta " + PORT);
         //connectionLoop();

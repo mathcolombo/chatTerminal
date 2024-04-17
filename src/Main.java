@@ -19,12 +19,15 @@ public class Main {
             String LOCAL_IP = InetAddress.getLocalHost().getHostAddress(); // Armazena o IP local
             System.out.println("O seu IP é " + LOCAL_IP); // Mostra o IP local para o cliente
             
-            server.startServer();
+            System.out.print("Digite a porta na qual seu servidor será criado: ");
+            int PORT = scan.nextInt();
+
+            server.startServer(PORT);
 
             System.out.print("Digite o endereço IP da máquina ao qual você deseja se conectar: ");
             SERVER_IP = scan.nextLine();
             //SERVER_IP = "127.0.0.1";
-            System.out.print("Digite a porta do servidor: ");
+            System.out.print("Digite a porta do servidor ao qual você deseja se conectar: ");
             SERVER_PORT = scan.nextInt();
 
             client.startClient(SERVER_IP, SERVER_PORT);
