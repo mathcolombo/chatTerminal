@@ -13,6 +13,7 @@ public class ClientSocket {
     public ClientSocket(Socket socket) throws IOException{
         this.socket = socket;
 
+        System.out.println();
         System.out.println("Cliente " + socket.getRemoteSocketAddress() + " conectou:");
 
         this.in = new BufferedReader(new InputStreamReader(socket.getInputStream())); // Tratamento de uma Stream para conseguir receber uma String

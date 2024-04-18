@@ -11,7 +11,6 @@ public class Server {
     public void startServer(int PORT) throws IOException {
         serverSocket = new ServerSocket(PORT);
         System.out.println("Servidor iniciado na porta " + PORT);
-        //connectionLoop();
     }
 
     // Loop para ler as mensagens recebidas
@@ -19,9 +18,7 @@ public class Server {
         ClientSocket clientSocket = new ClientSocket(serverSocket.accept());
         otherPointClient = clientSocket;
               
-        while (true) {
-            new Thread(() -> clientMessageLoop(clientSocket)).start(); // Thread para rodar o envio de mensagens recebidas para o Local Host de forma assíncrona
-        }
+        clientMessageLoop(clientSocket); // Thread para rodar o envio de mensagens recebidas para o Local Host de forma assíncrona
     }
 
     // Envia as mensagens recebidas para o Local Host
@@ -33,10 +30,11 @@ public class Server {
                 return;
 
             System.out.println("Cliente " + clientSocket.getRemoteSocketAddress() + ": " + messageClient); // Exibição da mensagem recebida
-            sendMessageToMe(clientSocket, messageClient); 
+            sendMessageToMe(clientSocket, messageClient); //Envia a mensagem para o Local Host de forma oculta
         }
 
-        System.out.println("Finalizado");
+        System.out.println("");
+        System.out.println("Cliente " + clientSocket.getRemoteSocketAddress() + " se desconectou");
     }
 
     // Manda a mensagem recebida para o Local Host

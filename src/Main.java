@@ -10,6 +10,7 @@ public class Main {
     private static Scanner scan;
     private static String SERVER_IP;
     private static int SERVER_PORT;
+
     public static void main(String[] args) {
         try {
             server = new Server();
@@ -25,8 +26,8 @@ public class Main {
             server.startServer(PORT);
 
             System.out.print("Digite o endereço IP da máquina ao qual você deseja se conectar: ");
-            SERVER_IP = scan.nextLine();
-            //SERVER_IP = "127.0.0.1";
+            SERVER_IP = scan.next();
+            //SERVER-_IP = "127.0.0.1"
             System.out.print("Digite a porta do servidor ao qual você deseja se conectar: ");
             SERVER_PORT = scan.nextInt();
 
@@ -36,14 +37,14 @@ public class Main {
                 try {
                     server.connectionLoop();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    System.err.println("O servidor não conseguiu se conectar como cliente. Por favor reinicie");
                     e.printStackTrace();
                 }
             }).start();
             client.messageLoop();
 
         } catch (Exception e) {
-            // TODO: handle exception
+            System.err.println("O programa não conseguiu subir o servidor. Por favor reinicie");
         }
 
     }

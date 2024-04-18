@@ -7,7 +7,6 @@ public class Client {
 
     private ClientSocket clientSocket;
     private static Scanner scan;
-    private static String SERVER_IP;
     public Server server;
 
     public Client() {
@@ -21,7 +20,6 @@ public class Client {
         );
         
         System.out.println("Conexão com a máquina " + SERVER_IP + " estabelecida");
-        //messageLoop();
     }
 
     // Loop para enviar as mensagens até "exit" ser digitado
@@ -30,10 +28,9 @@ public class Client {
         do {
             System.out.print("Digite uma mensagem: ");
             messageClient = scan.nextLine();
-            System.out.println();
             clientSocket.sendMessage(messageClient); // Saída da mensagem
 
-            System.out.println("Cliente " + SERVER_IP + ": " + clientSocket.getMessage()); // Recebe a mensagem enviada do outro cliente
+           //System.out.println("Cliente " + SERVER_IP + ": " + clientSocket.getMessage()); // Recebe a mensagem enviada do outro cliente (Client-Server-Client)
             
         } while(!messageClient.equalsIgnoreCase("exit")); // independe de estar em caixa alta ou baixa
     }
