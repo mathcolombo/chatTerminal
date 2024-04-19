@@ -4,3 +4,8 @@ RUN apt install -y net-tools inetutils-ping
 RUN apt install -y openjdk-21-jdk
 RUN mkdir /app
 COPY chatTerminal.jar /app/
+
+# PASSO A PASSO PARA RODAR O DOCKER E A APLICAÇÃO # 
+# -> docker run -it chatp2p # - (cria um container com a imagem chatp2p)
+# -> cd app # - (entra no diretório /app onde esta localizado o .jar)
+# -> java -jar chatTerminal.jar # - (executa a aplicação)
