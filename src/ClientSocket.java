@@ -17,7 +17,7 @@ public class ClientSocket {
         System.out.println("Cliente " + socket.getRemoteSocketAddress() + " conectou:");
 
         this.in = new BufferedReader(new InputStreamReader(socket.getInputStream())); // Tratamento de uma Stream para conseguir receber uma String
-        this.out = new PrintWriter(socket.getOutputStream(), true)  ; // Tratamento de uma Stream para conseguir passar uma String e não precisar ficar quebrando linha
+        this.out = new PrintWriter(socket.getOutputStream(), true); // Tratamento de uma Stream para conseguir passar uma String e não precisar ficar quebrando linha
     }
 
     // Pegar o endereço IP

@@ -18,7 +18,7 @@ public class Server {
         ClientSocket clientSocket = new ClientSocket(serverSocket.accept());
         otherPointClient = clientSocket;
               
-        clientMessageLoop(clientSocket); // Thread para rodar o envio de mensagens recebidas para o Local Host de forma assíncrona
+        clientMessageLoop(clientSocket); // Envio de mensagens recebidas para o Local Host de forma assíncrona
     }
 
     // Envia as mensagens recebidas para o Local Host
